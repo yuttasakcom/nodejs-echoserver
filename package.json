@@ -1,13 +1,13 @@
 {
-  "name": "nodejs-echoserver",
+  "name": "node-echoserver",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/server.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["node-echoserver"],
+  "author": "YoYea <yuttasakcom@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "express": "^4.16.3"

@@ -1,15 +1,20 @@
-FROM keymetrics/pm2:latest-alpine
+FROM node:10.0.0-alpine
 
-# Bundle APP files
-COPY src src/
-COPY package.json .
-COPY pm2.json .
+RUN mkdir -p /opt/app
 
-# Install app dependencies
-ENV NPM_CONFIG_LOGLEVEL warn
-RUN npm install --production
+ARG NODE_ENV=production
+ENV NODE_ENV $NODE_ENV
 
-# Show current folder structure in logs
-RUN ls -al -R
+ARG PORT=3000
+ENV PORT $PORT
+EXPOSE $PORT
 
-CMD [ "pm2-runtime", "start", "pm2.json" ]
+WORKDIR /opt
+COPY package.json package-lock.json* ./
+RUN npm install && npm cache clean --force
+ENV PATH /opt/node_modules/.bin:$PATH
+
+WORKDIR /opt/app
+COPY src/ /opt/app
+
+CMD [ "node", "server.js" ]

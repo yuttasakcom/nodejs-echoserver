@@ -1,10 +1,10 @@
-version: '3'
+version: '3.5'
 
 services:
 
   apis:
     build: .
-    image: yuttasakcom/nodejs-echoserver:1.0.1
+    image: yuttasakcom/node-echoserver:1.0.0
     ports:
       - "3000:3000"
     restart: always
